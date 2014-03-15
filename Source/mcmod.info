@@ -1,0 +1,18 @@
+{
+  "modinfoversion": 2,
+  "modlist": [{
+    "modid": "WiduX-SteveTechCore",
+    "name": "SteveTech Core",
+    "description": "A mod improving Minecraft with technology, while still retaining the Minecraft look and feel.",
+    "version": "0.1",
+    "mcversion": "1.4.7",
+    "url": "http://www.WiduX.net",
+    "updateUrl": "",
+    "authors": [ "WiduX" ],
+    "credits": "",
+    "logoFile": "",
+    "requiredMods": [ "Forge" ],
+    "dependants": [ "WiduX-SteveTechFarming" ],
+    "useDependencyInformation": "false"
+  }]
+}
