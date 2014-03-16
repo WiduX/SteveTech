@@ -1,5 +1,7 @@
 package net.widux.stevetech.core;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -26,6 +28,8 @@ public class SteveTechCore
 	@SidedProxy(clientSide = "net.widux.stevetech.core.ClientProxy", serverSide = "net.widux.stevetech.core.CommonProxy")
 	public static CommonProxy proxy;
 	
+	public ArrayList<String> installedAddons = new ArrayList<String>();
+	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -35,7 +39,12 @@ public class SteveTechCore
 	@Init
 	public void init(FMLInitializationEvent event)
 	{
-		
+		proxy.addComponents();
+		proxy.registerBlocks();
+		proxy.registerNames();
+		proxy.addCrafting();
+		proxy.registerRenderers();
+		proxy.addGeneration();
 	}
 	
 	@PostInit

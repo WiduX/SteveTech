@@ -1,6 +1,8 @@
 {
   "modinfoversion": 2,
-  "modlist": [{
+  "modlist":
+  [
+  {
     "modid": "WiduX-SteveTechCore",
     "name": "SteveTech Core",
     "description": "A mod improving Minecraft with technology, while still retaining the Minecraft look and feel.",
@@ -14,5 +16,22 @@
     "requiredMods": [ "Forge" ],
     "dependants": [ "WiduX-SteveTechFarming" ],
     "useDependencyInformation": "false"
-  }]
+  },
+  {
+    "modid": "WiduX-SteveTechFarming",
+    "name": "SteveTech Farming",
+    "description": "A part of SteveTech, addressing issues, and adding content to the farming aspect of Minecraft.",
+    "version": "0.1",
+    "mcversion": "1.4.7",
+    "url": "http://www.WiduX.net",
+    "updateUrl": "",
+    "authors": [ "WiduX" ],
+    "credits": "",
+    "logoFile": "",
+    "requiredMods": [ "Forge", "WiduX-SteveTechCore" ],
+    "parent": "WiduX-SteveTechCore",
+    "dependencies": [ "WiduX-SteveTechCore" ],
+    "useDependencyInformation": "true"
+  }
+  ]
 }
