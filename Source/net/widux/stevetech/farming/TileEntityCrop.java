@@ -134,13 +134,13 @@ public class TileEntityCrop extends TileEntity
 		boolean finished = !this.stopGrowing;
 		boolean dropsSeed = this.crop.getDropsSeed();
 		ItemStack[] items = {null, null};
-		
-		if(crop == 9) // Bell Pepper TODO Verify this.
+		//TODO Re-add Bell pepper variation harvesting.
+		/*if(crop == EnumCrop.BELLPEPPER.getID()) // Bell Pepper TODO Verify this.
 		{
 			items[0] = new ItemStack(SteveTechFarming.harvestedItems, getAmountDropped(true), stage - 2);
 			items[1] = new ItemStack(SteveTechFarming.seeds, getAmountDropped(false), crop);
 			return items;
-		}
+		}*/
 		if(!dropsSeed) // Shouldn't drop seeds, just harvest
 		{
 			items[0] = new ItemStack(getDropHarvest(crop).itemID, getAmountDropped(true), getDropHarvest(crop).getItemDamage());
