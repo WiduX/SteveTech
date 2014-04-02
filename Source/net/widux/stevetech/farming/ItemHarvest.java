@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 public class ItemHarvest extends Item
 {
 	
-	public static final String[] names = {"Tomato", "Green Bell Pepper", "Yellow Bell Pepper", "Orange Bell Pepper", "Red Bell Pepper", "Cucumber"};
+	public static final String[] names = {"Tomato", "Onion", "Cucumber", "Eggplant", "Tea Leaves", "Raw Coffe Beans", "Roasted Coffee Beans", "Lettuce", "Radishes"};
 	
 	public ItemHarvest(int ID)
 	{

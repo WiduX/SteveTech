@@ -33,7 +33,7 @@ public class ItemSeeds extends Item
 		return 0 + meta;
 	}
 	
-	public String getUnlocalizedName(ItemStack item)
+	public String getItemNameIS(ItemStack item)
 	{
 		return "WiduX-BF-Item-Seeds." + TileEntityCrop.getCrop(item.getItemDamage()).getName();
 	}

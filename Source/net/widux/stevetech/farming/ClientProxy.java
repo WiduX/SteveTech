@@ -15,23 +15,23 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Crops.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Item.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Seed.png");
-		SteveTechFarming.renderFruitID = RenderingRegistry.getNextAvailableRenderId();
+		//SteveTechFarming.renderFruitID = RenderingRegistry.getNextAvailableRenderId();
 		SteveTechFarming.renderCropID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(SteveTechFarming.renderFruitID, new RenderFruit());
+		//RenderingRegistry.registerBlockHandler(SteveTechFarming.renderFruitID, new RenderFruit());
 		RenderingRegistry.registerBlockHandler(SteveTechFarming.renderCropID, new RenderCrop());
 	}
 	
 	@Override
 	public void registerNames()
 	{
-		for(int meta = 0; meta < 6; meta++)
+		/*for(int meta = 0; meta < 6; meta++)
 		{
 			LanguageRegistry.addName(new ItemStack(SteveTechFarming.corral, 1, meta), "Corral");
-		}
+		}*/
 		
 		LanguageRegistry.addName(new ItemStack(SteveTechFarming.crops, 1), "Crop Block");
 		
-		for(int meta = 0; meta < 4; meta ++)
+		for(int meta = 0; meta < TileEntityCrop.getSeedTypesAmount(); meta++)
 		{
 			if(TileEntityCrop.getSuffix(meta))
 			{
@@ -55,7 +55,7 @@ public class ClientProxy extends CommonProxy
 		LanguageRegistry.addName(new ItemStack(SteveTechFarming.creativeTools, 1, 3), "Plant Info");
 		
 		LanguageRegistry.instance().addStringLocalization("itemGroup.BetterFarming", "en_US", "BetterFarming");
-		//LanguageRegistry.addName(new ItemStack(BetterFarming.fruits, 1, 0), "Fruit");
+		//LanguageRegistry.addName(new ItemStack(SteveTechFarming.fruits, 1, 0), "Fruit");
 	}
 	
 }

@@ -29,12 +29,12 @@ public class SteveTechFarming
 	public static ConfigAssist config;
 	
 	public static Block crops;
-	public static Block corral;
-	public static Block leaves;
-	public static Block logs;
-	public static Block fruit;
+	//public static Block corral;
+	//public static Block leaves;
+	//public static Block logs;
+	//public static Block fruit;
 	
-	public static TileEntityFruit teFruit;
+	//public static TileEntityFruit teFruit;
 	public static TileEntityCrop teCrop;
 	
 	public static Item seeds;
@@ -43,7 +43,7 @@ public class SteveTechFarming
 	
 	public static CreativeTabs betterFarmingTab = new CreativeTabFarming("BetterFarming");
 	
-	public static int renderFruitID;
+	//public static int renderFruitID;
 	public static int renderCropID;
 	
 	@Instance(MOD_INTERNAL_NAME)

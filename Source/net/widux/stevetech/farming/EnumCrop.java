@@ -5,12 +5,13 @@ import net.minecraft.item.ItemStack;
 public enum EnumCrop
 {
 	
-	TOMATO("Tomato", 8, 2, 5, 3, 80, new ItemStack(SteveTechFarming.harvestedItems, 1, 0), new ItemStack(SteveTechFarming.seeds, 1, 0), true, true),
-	BEANS("Beans", 7, 2, 5, 1, 50, new ItemStack(SteveTechFarming.seeds, 1, 1), null, false, false),
-	ONION("Onion", 4, 1, 4, 1, 110, new ItemStack(SteveTechFarming.seeds, 1, 2), null, false, false),
-	BELLPEPPER("Bell Pepper", 7, 1, 4, 3, 70, new ItemStack(SteveTechFarming.harvestedItems, 1, 0), new ItemStack(SteveTechFarming.seeds, 1, 3), true, true),
-	CUCUMBER("Cucumber", 0, 3, 4, 4, 60, new ItemStack(SteveTechFarming.harvestedItems, 1, 5), new ItemStack(SteveTechFarming.seeds, 1, 5), true, true),
-	LETTUCE("Lettuce", 0, 1, 5, 4, 55, new ItemStack(SteveTechFarming.harvestedItems, 1, 6), new ItemStack(SteveTechFarming.seeds, 1, 6), true, true);
+	TOMATO		("Tomato",		8, 2, 5, 3, 80, new ItemStack(SteveTechFarming.harvestedItems, 1, 0),	new ItemStack(SteveTechFarming.seeds, 1, 0),	true, true),
+	ONION		("Onion",		4, 1, 4, 1, 110, new ItemStack(SteveTechFarming.seeds, 1, 1),			null,											false, false),
+	CUCUMBER	("Cucumber",	0, 2, 4, 4, 60, new ItemStack(SteveTechFarming.harvestedItems, 1, 1),	new ItemStack(SteveTechFarming.seeds, 1, 2),	true, true),
+	EGGPLANT	("Eggplant",	4, 1, 4, 1, 140, new ItemStack(SteveTechFarming.harvestedItems, 1, 2),	new ItemStack(SteveTechFarming.seeds, 1, 3),	true, true);//,
+	//BEANS		("Beans",		7, 2, 5, 1, 50, new ItemStack(SteveTechFarming.seeds, 1, 1),			null,											false, false),
+	//BELLPEPPER	("Bell Pepper",	7, 1, 4, 3, 70, new ItemStack(SteveTechFarming.harvestedItems, 1, 0),	new ItemStack(SteveTechFarming.seeds, 1, 3),	true, true),
+	//LETTUCE		("Lettuce",		0, 1, 5, 4, 55, new ItemStack(SteveTechFarming.harvestedItems, 1, 6),	new ItemStack(SteveTechFarming.seeds, 1, 6),	true, true);
 	
 	private String identifier;
 	private int growthStages;
@@ -29,7 +30,7 @@ public enum EnumCrop
 	 * @param maxHeight The maximum height of the plant (in blocks)
 	 * @param maxDropHarvest The maximum amount of harvest items dropped when harvested
 	 * @param maxDropSeed The maximum seed items dropped when harvested
-	 * @param growthSpeed The growth speed of the plant. Lower = faster
+	 * @param growthSpeed The growth speed of the plant. Lower = faster, use actual plant growth days.
 	 * @param dropHarvest The item dropped for the harvest
 	 * @param dropSeed The item dropped for the seed
 	 * @param willDropSeed Does this crop drop seeds?

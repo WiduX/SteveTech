@@ -1,4 +1,4 @@
-package net.widux.stevetech.farming;
+package net.widux.stevetech.farming.notused;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -40,7 +40,7 @@ public class RenderFruit implements ISimpleBlockRenderingHandler
         double var20 = (double)y;
         double var15 = (double)z;
 
-       /* if (block == Block.tallGrass)
+        /*if (block == Block.tallGrass)
         {
             long var17 = (long)(x * 3129871) ^ (long)z * 116129781L ^ (long)y;
             var17 = var17 * var17 * 42317861L + var17 * 11L;
