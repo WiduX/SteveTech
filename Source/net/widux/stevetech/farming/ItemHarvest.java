@@ -3,25 +3,27 @@ package net.widux.stevetech.farming;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemHarvest extends Item
 {
 	
-	public static final String[] names = {"Tomato", "Onion", "Cucumber", "Eggplant", "Tea Leaves", "Raw Coffe Beans", "Roasted Coffee Beans", "Lettuce", "Radishes"};
+	public static final String[] names = {"Tomato", "Cucumber", "Eggplant", "Tea Leaves", "Raw Coffee Beans", "Roasted Coffee Beans", "Lettuce", "Radishes"};
+	public static final String[] info = {"", "", "", "", "Should be roasted before use", "", "", ""};
 	
 	public ItemHarvest(int ID)
 	{
 		super(ID);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
-		this.setCreativeTab(SteveTechFarming.betterFarmingTab);
+		this.setCreativeTab(SteveTechFarming.stFarmingTab);
 	}
 	
 	public String getTextureFile()
 	{
-		return "/widux/betterfarming/Item.png";
+		return "/net/widux/stevetech/farming/item.png";
 	}
 	
 	public int getIconFromDamage(int meta)
@@ -29,9 +31,18 @@ public class ItemHarvest extends Item
 		return 16 + meta;
 	}
 	
-	public String getUnlocalizedName(ItemStack item)
+	public String getItemNameIS(ItemStack item)
 	{
 		return "WiduX-BF-Item-Harvest." + names[item.getItemDamage()];
+	}
+	
+	@Override
+	public void addInformation(ItemStack item, EntityPlayer player, List list, boolean flag)
+	{
+		if(!"".equals(info[item.getItemDamage()])) // If this item has an extended description
+		{
+			list.add(info[item.getItemDamage()]);
+		}
 	}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })

@@ -135,13 +135,13 @@ public class TileEntityCrop extends TileEntity
 		boolean dropsSeed = this.crop.getDropsSeed();
 		ItemStack[] items = {null, null};
 		
-		if(crop == 3) // Bell Pepper
+		if(crop == 9) // Bell Pepper TODO Verify this.
 		{
 			items[0] = new ItemStack(SteveTechFarming.harvestedItems, getAmountDropped(true), stage - 2);
 			items[1] = new ItemStack(SteveTechFarming.seeds, getAmountDropped(false), crop);
 			return items;
 		}
-		else if(!dropsSeed) // Shouldn't drop seeds, just harvest
+		if(!dropsSeed) // Shouldn't drop seeds, just harvest
 		{
 			items[0] = new ItemStack(getDropHarvest(crop).itemID, getAmountDropped(true), getDropHarvest(crop).getItemDamage());
 			items[1] = null;
@@ -325,8 +325,7 @@ public class TileEntityCrop extends TileEntity
 		else
 		{
 			int half = this.crop.getGrowthSpeed() / 2;
-			
-			return (int) (half - (half * (this.fertilizer / 115.000F)));
+			return (int) (half - (half * (this.fertilizer / 200.000F)));
 		}
 	}
 	

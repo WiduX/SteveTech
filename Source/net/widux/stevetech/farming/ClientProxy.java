@@ -54,7 +54,7 @@ public class ClientProxy extends CommonProxy
 		LanguageRegistry.addName(new ItemStack(SteveTechFarming.creativeTools, 1, 2), "Full Fertilizer");
 		LanguageRegistry.addName(new ItemStack(SteveTechFarming.creativeTools, 1, 3), "Plant Info");
 		
-		LanguageRegistry.instance().addStringLocalization("itemGroup.BetterFarming", "en_US", "BetterFarming");
+		LanguageRegistry.instance().addStringLocalization("itemGroup.SteveTechFarming", "en_US", "SteveTech Farming");
 		//LanguageRegistry.addName(new ItemStack(SteveTechFarming.fruits, 1, 0), "Fruit");
 	}
 	

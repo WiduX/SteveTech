@@ -20,7 +20,7 @@ public class ItemSeeds extends Item
 		super(ID);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
-		this.setCreativeTab(SteveTechFarming.betterFarmingTab);
+		this.setCreativeTab(SteveTechFarming.stFarmingTab);
 	}
 	
 	public String getTextureFile()

@@ -41,7 +41,7 @@ public class SteveTechFarming
 	public static Item harvestedItems;
 	public static Item creativeTools;
 	
-	public static CreativeTabs betterFarmingTab = new CreativeTabFarming("BetterFarming");
+	public static CreativeTabs stFarmingTab = new CreativeTabFarming("SteveTechFarming");
 	
 	//public static int renderFruitID;
 	public static int renderCropID;

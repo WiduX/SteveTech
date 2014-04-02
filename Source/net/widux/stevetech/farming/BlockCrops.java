@@ -15,7 +15,7 @@ public class BlockCrops extends BlockContainer
 	public BlockCrops(int ID)
 	{
 		super(ID, Material.plants);
-		this.setCreativeTab(SteveTechFarming.betterFarmingTab);
+		this.setCreativeTab(SteveTechFarming.stFarmingTab);
 		this.setTickRandomly(true);
 	}
 	
