@@ -7,9 +7,35 @@ public enum EnumCrop
 	
 	TOMATO		("Tomato",		8, 2, 5, 3, 80, new ItemStack(SteveTechFarming.harvestedItems, 1, 0),	new ItemStack(SteveTechFarming.seeds, 1, 0),	true, true),
 	ONION		("Onion",		4, 1, 4, 1, 110, new ItemStack(SteveTechFarming.seeds, 1, 1),			null,											false, false),
-	CUCUMBER	("Cucumber",	0, 2, 4, 4, 60, new ItemStack(SteveTechFarming.harvestedItems, 1, 1),	new ItemStack(SteveTechFarming.seeds, 1, 2),	true, true),
+	CUCUMBER	("Cucumber",	6, 1, 4, 4, 60, new ItemStack(SteveTechFarming.harvestedItems, 1, 1),	new ItemStack(SteveTechFarming.seeds, 1, 2),	true, true),
 	EGGPLANT	("Eggplant",	7, 1, 5, 3, 140, new ItemStack(SteveTechFarming.harvestedItems, 1, 2),	new ItemStack(SteveTechFarming.seeds, 1, 3),	true, true),
-	TEA			("Tea",			4, 2, 4, 4, 100, new ItemStack(SteveTechFarming.harvestedItems, 1, 3),	new ItemStack(SteveTechFarming.seeds, 1, 4),	true, true);
+	TEA			("Tea",			4, 1, 5, 3, 100, new ItemStack(SteveTechFarming.harvestedItems, 1, 3),	new ItemStack(SteveTechFarming.seeds, 1, 4),	true, true),
+	COFFEE		("Coffee",		6, 1, 6, 1, 100, new ItemStack(SteveTechFarming.seeds, 1, 5),			null,											false, false),
+	LETTUCE		("Lettuce",		6, 1, 5, 3, 55, new ItemStack(SteveTechFarming.harvestedItems, 1, 4),	new ItemStack(SteveTechFarming.seeds, 1, 6),	true, true);
+	//RADISHES
+	//CABBAGE
+	//BELLPEPPER
+	//PEAS
+	//BEANS
+	//STRWABERRY
+	//RASPBERRY
+	//BLUEBERRY
+	//HUCKLEBERRY
+	//BLACKBERRY
+	//BANANA
+	//GRAPE
+	//CANTALOUPE
+	//GREENONION
+	//PARSLEY
+	//PEPPER
+	//RICE
+	//VANILLA
+	//CORN
+	//GARLIC
+	//GINGER
+	//CHILI
+	
+	// Old:
 	//BEANS		("Beans",		7, 2, 5, 1, 50, new ItemStack(SteveTechFarming.seeds, 1, 1),			null,											false, false),
 	//BELLPEPPER	("Bell Pepper",	7, 1, 4, 3, 70, new ItemStack(SteveTechFarming.harvestedItems, 1, 0),	new ItemStack(SteveTechFarming.seeds, 1, 3),	true, true),
 	//LETTUCE		("Lettuce",		0, 1, 5, 4, 55, new ItemStack(SteveTechFarming.harvestedItems, 1, 6),	new ItemStack(SteveTechFarming.seeds, 1, 6),	true, true);

@@ -23,7 +23,7 @@ public class ItemHarvest extends Item
 	
 	public String getTextureFile()
 	{
-		return "/net/widux/stevetech/farming/item.png";
+		return "/net/widux/stevetech/farming/Item.png";
 	}
 	
 	public int getIconFromDamage(int meta)
