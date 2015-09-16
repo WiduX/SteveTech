@@ -36,6 +36,7 @@ public class ItemHarvest extends Item
 		return "WiduX-BF-Item-Harvest." + names[item.getItemDamage()];
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addInformation(ItemStack item, EntityPlayer player, List list, boolean flag)
 	{
