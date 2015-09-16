@@ -32,7 +32,7 @@ public class SteveTechFarming
 	//public static Block corral;
 	//public static Block leaves;
 	//public static Block logs;
-	//public static Block fruit;
+	public static Block fruit;
 	
 	//public static TileEntityFruit teFruit;
 	public static TileEntityCrop teCrop;
@@ -43,7 +43,7 @@ public class SteveTechFarming
 	
 	public static CreativeTabs stFarmingTab = new CreativeTabFarming("SteveTechFarming");
 	
-	//public static int renderFruitID;
+	public static int renderFruitID;
 	public static int renderCropID;
 	
 	@Instance(MOD_INTERNAL_NAME)

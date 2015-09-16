@@ -15,9 +15,9 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Crops.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Item.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Seed.png");
-		//SteveTechFarming.renderFruitID = RenderingRegistry.getNextAvailableRenderId();
+		SteveTechFarming.renderFruitID = RenderingRegistry.getNextAvailableRenderId();
 		SteveTechFarming.renderCropID = RenderingRegistry.getNextAvailableRenderId();
-		//RenderingRegistry.registerBlockHandler(SteveTechFarming.renderFruitID, new RenderFruit());
+		RenderingRegistry.registerBlockHandler(SteveTechFarming.renderFruitID, new RenderFruit());
 		RenderingRegistry.registerBlockHandler(SteveTechFarming.renderCropID, new RenderCrop());
 	}
 	
@@ -55,7 +55,7 @@ public class ClientProxy extends CommonProxy
 		LanguageRegistry.addName(new ItemStack(SteveTechFarming.creativeTools, 1, 3), "Plant Info");
 		
 		LanguageRegistry.instance().addStringLocalization("itemGroup.SteveTechFarming", "en_US", "SteveTech Farming");
-		//LanguageRegistry.addName(new ItemStack(SteveTechFarming.fruits, 1, 0), "Fruit");
+		LanguageRegistry.addName(new ItemStack(SteveTechFarming.fruit, 1), "Fruit");
 	}
 	
 }

@@ -108,7 +108,7 @@ public class TileEntityCrop extends TileEntity
 			zItem = (rand.nextDouble() * 0.0015D) + z;
 
 			ItemStack[] itemsDropped = getItemsDropped();
-
+			
 			if(itemsDropped[0] != null && itemsDropped[0].stackSize > 0)
 			{
 				EntityItem droppedHarvest = new EntityItem(world, xItem, yItem, zItem, itemsDropped[0]);

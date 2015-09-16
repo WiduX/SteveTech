@@ -1,4 +1,4 @@
-package net.widux.stevetech.farming.notused;
+package net.widux.stevetech.farming;
 
 import java.util.Random;
 
@@ -20,8 +20,8 @@ public class TileEntityFruit extends TileEntity
 	private String STAGE = "GrowthStage";
 	
 	// Block-specific
-	private int fruitType;
-	private int growthStage;
+	private int fruitType = 0;
+	private int growthStage = 0;
 	private boolean isReady;
 	
 	// Applies to all fruits
@@ -96,4 +96,9 @@ public class TileEntityFruit extends TileEntity
     {
     	return drops[fruit];
     }
+    
+	public int getFruitTexture()
+	{
+		return (fruitType * 8) + growthStage;
+	}
 }

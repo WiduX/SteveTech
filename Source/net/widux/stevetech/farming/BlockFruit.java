@@ -1,4 +1,4 @@
-package net.widux.stevetech.farming.notused;
+package net.widux.stevetech.farming;
 
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class BlockFruit extends BlockContainer
 	
 	public String getTextureFile()
 	{
-		return "/widux/betterfarming/Block.png";
+		return "/net/widux/stevetech/farming/Block.png";
 	}
 	
 	public TileEntity createNewTileEntity(World world)
@@ -31,6 +31,11 @@ public class BlockFruit extends BlockContainer
 	public boolean renderAsNormalBlock()
 	{
 		return false;
+	}
+	
+	public int getTextureFromSideAndMetadata(int side, int meta)
+	{
+		return 255;
 	}
 	
 	public int getRenderType()
@@ -45,14 +50,15 @@ public class BlockFruit extends BlockContainer
 	
 	public boolean canBeHere(World world, int x, int y, int z)
 	{
-		if(world.getBlockId(x, y + 1, z) == SteveTechFarming.leaves.blockID)
+		//TODO Re-implement this check.
+		//if(world.getBlockId(x, y + 1, z) == SteveTechFarming.leaves.blockID)
 		{
 			return true;
 		}
-		else
+		/*else
 		{
 			return false;
-		}
+		}*/
 	}
 	
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighbor)
