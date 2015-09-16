@@ -243,16 +243,13 @@ public class TileEntityCrop extends TileEntity
 
 	public void attemptAddGrowthStage()
 	{
-		if(this.stopGrowing)
-		{
-			return;
-		}
+		if(this.stopGrowing) {return;}
 		
 		if(this.crop.getMaxHeight() > 1)
 		{
 			addGrowthStageMulti();
 		}
-		
+		if(this.stopGrowing) {return;}
 		if(this.crop.getMaxHeight() == 2 && getGrowthStage() == this.crop.getGrowthStages() - 2)
 		{
 			if(this.worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == 0)

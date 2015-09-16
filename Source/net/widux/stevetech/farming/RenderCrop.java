@@ -21,7 +21,7 @@ public class RenderCrop implements ISimpleBlockRenderingHandler
         tess.setColorOpaque_F(1.0F, 1.0F, 1.0F);
         
         TileEntityCrop teCrop = (TileEntityCrop) world.getBlockTileEntity(x, y, z);
-        System.out.println("Getting ID for crop at X" + x + "  Y" + y + "  Z" + z);
+        //System.out.println("Getting ID for crop at X" + x + "  Y" + y + "  Z" + z);
         int cropType = teCrop.getCropID();
         int cropStage = teCrop.getGrowthStage();
         int texture = teCrop.getCropTexture(cropType, cropStage);
