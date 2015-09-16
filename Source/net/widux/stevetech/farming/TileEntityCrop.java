@@ -103,9 +103,9 @@ public class TileEntityCrop extends TileEntity
 			Random rand = new Random();
 
 			double xItem, yItem, zItem;
-			xItem = (rand.nextDouble() * 0.002D) + x;
-			yItem = (rand.nextDouble() * 0.002D) + y + 0.5;
-			zItem = (rand.nextDouble() * 0.002D) + z;
+			xItem = (rand.nextDouble() * 0.0015D) + x;
+			yItem = (rand.nextDouble() * 0.0015D) + y + 0.5;
+			zItem = (rand.nextDouble() * 0.0015D) + z;
 
 			ItemStack[] itemsDropped = getItemsDropped();
 
@@ -245,11 +245,13 @@ public class TileEntityCrop extends TileEntity
 	{
 		if(this.stopGrowing) {return;}
 		
-		if(this.crop.getMaxHeight() > 1)
+		if(this.crop.getMaxHeight() > 1) // Create a plant above if necessary.
 		{
 			addGrowthStageMulti();
 		}
-		if(this.stopGrowing) {return;}
+		
+		if(this.stopGrowing) {return;} // If plant above was created, the bottom shouldn't continue anymore.
+		
 		if(this.crop.getMaxHeight() == 2 && getGrowthStage() == this.crop.getGrowthStages() - 2)
 		{
 			if(this.worldObj.getBlockId(xCoord, yCoord + 1, zCoord) == 0)
@@ -341,7 +343,7 @@ public class TileEntityCrop extends TileEntity
 	}
 	
 	/**
-	 * DO NOT USE.
+	 * DO NOT USE DIRECTLY.
 	 */
 	private void addGrowthStage()
 	{
