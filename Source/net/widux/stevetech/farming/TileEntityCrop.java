@@ -109,14 +109,14 @@ public class TileEntityCrop extends TileEntity
 
 			ItemStack[] itemsDropped = getItemsDropped();
 
-			if(itemsDropped[0] != null)
+			if(itemsDropped[0] != null && itemsDropped[0].stackSize > 0)
 			{
 				EntityItem droppedHarvest = new EntityItem(world, xItem, yItem, zItem, itemsDropped[0]);
 				droppedHarvest.delayBeforeCanPickup = 5;
 				world.spawnEntityInWorld(droppedHarvest);
 			}
 
-			if(itemsDropped[1] != null)
+			if(itemsDropped[1] != null && itemsDropped[1].stackSize > 0)
 			{
 				EntityItem droppedSeed = new EntityItem(world, xItem, yItem, zItem, itemsDropped[1]);
 				droppedSeed.delayBeforeCanPickup = 5;
