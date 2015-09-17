@@ -119,9 +119,18 @@ public class TileEntityFruit extends TileEntity
 		this.growthStage = newStage;
 	}
     
-	public void attemptAddGrowthStage() // TODO Implement growing.
+	public void attemptAddGrowthStage()
 	{
-		
+		if(this.stopGrowing) {return;}
+		if(getGrowthStage() < this.fruit.getGrowthStages() - 1)
+		{
+			growthStage++;
+		}
+		if(getGrowthStage() >= this.fruit.getGrowthStages() - 1)
+		{
+			this.stopGrowing = true;
+		}
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 	
 	public void tick()
