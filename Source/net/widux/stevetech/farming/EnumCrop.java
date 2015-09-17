@@ -131,6 +131,11 @@ public enum EnumCrop
 		return this.nameSuffix;
 	}
 	
+	public int getID()
+	{
+		return this.ordinal();
+	}
+	
 	/*
 	 * Below this point are non-crop-specific details, therefore static.
 	 */
@@ -140,13 +145,9 @@ public enum EnumCrop
 		return values().length;
 	}
 	
-	public int getID()
+	public static EnumCrop getCrop(int ID)
 	{
-		return this.ordinal();
+		return values()[ID];
 	}
 	
-	public EnumCrop getCrop(int ID)
-	{
-		return this.values()[ID];
-	}
 }

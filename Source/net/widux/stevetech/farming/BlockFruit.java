@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -60,6 +61,21 @@ public class BlockFruit extends BlockContainer
 			return false;
 		}*/
 	}
+	
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset)
+    {
+    	if(!world.isRemote)
+    	{
+    		TileEntityFruit teFruit = (TileEntityFruit)world.getBlockTileEntity(x, y, z);
+    		boolean worked = teFruit.rightClick(player.getHeldItem(), player);
+    		if(worked && !player.capabilities.isCreativeMode)
+    		{
+    			player.getHeldItem().stackSize--;
+    		}
+    	}
+    	world.markBlockForUpdate(x, y, z);
+        return true;
+    }
 	
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighbor)
 	{

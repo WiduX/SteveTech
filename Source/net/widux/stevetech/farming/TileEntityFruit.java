@@ -3,6 +3,7 @@ package net.widux.stevetech.farming;
 import java.util.Random;
 
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,19 +17,15 @@ public class TileEntityFruit extends TileEntity
 {
 	
 	// Names for NBT Tags
-	private String FRUIT = "FruitType";
-	private String STAGE = "GrowthStage";
+	private final String NBT_FRUIT = "FruitType";
+	private final String NBT_STAGE = "GrowthStage";
+	private final String NBT_FINISHED = "NoLongerGrows";
 	
 	// Block-specific
-	private int fruitType = 0;
-	private int growthStage = 0;
-	private boolean isReady;
-	
-	// Applies to all fruits
-	private String[] fruits = {"Apple", "Orange", "Pear", "Lemon", "Grapefruit"};
-	private int[] stages = {3, 3, 3, 3, 3};
-	private int[] maxDrop = {1, 1, 1, 1, 1};
-	private ItemStack[] drops = {new ItemStack(Item.appleRed)};
+	private EnumFruit fruit;
+	private int growthStage;
+	private boolean stopGrowing;
+	private byte tickDelay = 0; // Used to delay updates from ticks. Improves performance, slows rendering updates.
 	
 	public TileEntityFruit()
 	{
@@ -39,16 +36,18 @@ public class TileEntityFruit extends TileEntity
     {
 		super.readFromNBT(nbt);
 		
-		fruitType = nbt.getInteger(FRUIT);
-		growthStage = nbt.getInteger(STAGE);
+		fruit = EnumFruit.values()[nbt.getInteger(NBT_FRUIT)];
+		growthStage = nbt.getInteger(NBT_STAGE);
+		stopGrowing = nbt.getBoolean(NBT_FINISHED);
     }
 	
 	public void writeToNBT(NBTTagCompound nbt)
 	{
 		super.writeToNBT(nbt);
 		
-		nbt.setInteger(FRUIT, fruitType);
-		nbt.setInteger(STAGE, growthStage);
+		nbt.setInteger(NBT_FRUIT, fruit.getID());
+		nbt.setInteger(NBT_STAGE, growthStage);
+		nbt.setBoolean(NBT_FINISHED, stopGrowing);
 	}
 	
     @Override
@@ -82,6 +81,51 @@ public class TileEntityFruit extends TileEntity
     	world.spawnEntityInWorld(dropped);
     }
     
+    /** Returns true to remove a single item from the player (e.g. bone meal) */
+    public boolean rightClick(ItemStack itemHeld, EntityPlayer player)
+	{
+		if(itemHeld == null) // No item being held
+		{
+			return false;
+		}
+		
+		if(itemHeld.itemID == SteveTechFarming.creativeTools.itemID) // Creative Tools
+		{
+			if(itemHeld.getItemDamage() == 0) // Growth Progressor
+	        {
+	        	this.attemptAddGrowthStage();
+	        	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+	        }
+			
+	        else if(itemHeld.getItemDamage() == 1) // Growth Halter
+	        {
+	        	this.stopGrowing();
+	        	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+	        }
+			
+	        else if(itemHeld.getItemDamage() == 3) // Plant Informer
+	        {
+				player.sendChatToPlayer("\u00a72----- Plant Status -----");
+				player.sendChatToPlayer("\u00a76Fruit Type: \u00a7f" + this.fruit + " (" + this.fruit.getName() + ")");
+				player.sendChatToPlayer("\u00a76Growth Speed: \u00a7f" + this.getGrowthSpeed());
+				player.sendChatToPlayer("\u00a76Stage: \u00a7f" + this.growthStage);
+				player.sendChatToPlayer("\u00a76Stopped Growing: \u00a7f" + this.stopGrowing);
+	        }
+			
+			return false;
+		}
+	}
+	
+	public void updateEntity()
+	{
+		if(tickDelay >= 40) // This will only tick the block every 40 ticks, reducing server & client load, and network usage.
+		{
+			tickDelay = 0;
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+		tickDelay++;
+	}
+		
     public int getFruitID()
     {
     	return fruitType;

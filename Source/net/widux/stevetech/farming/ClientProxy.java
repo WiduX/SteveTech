@@ -35,11 +35,11 @@ public class ClientProxy extends CommonProxy
 		{
 			if(TileEntityCrop.getSuffix(meta))
 			{
-				LanguageRegistry.addName(new ItemStack(SteveTechFarming.seeds, 1, meta), TileEntityCrop.getCrop(meta).getName() + " Seeds");
+				LanguageRegistry.addName(new ItemStack(SteveTechFarming.seeds, 1, meta), EnumCrop.getCrop(meta).getName() + " Seeds");
 			}
 			else
 			{
-				LanguageRegistry.addName(new ItemStack(SteveTechFarming.seeds, 1, meta), TileEntityCrop.getCrop(meta).getName());
+				LanguageRegistry.addName(new ItemStack(SteveTechFarming.seeds, 1, meta), EnumCrop.getCrop(meta).getName());
 			}
 			
 		}

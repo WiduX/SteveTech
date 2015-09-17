@@ -35,7 +35,7 @@ public class ItemSeeds extends Item
 	
 	public String getItemNameIS(ItemStack item)
 	{
-		return "WiduX-BF-Item-Seeds." + TileEntityCrop.getCrop(item.getItemDamage()).getName();
+		return "WiduX-BF-Item-Seeds." + EnumCrop.getCrop(item.getItemDamage()).getName();
 	}
 	
 	public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float xOffset, float yOffset, float zOffset)
@@ -78,7 +78,7 @@ public class ItemSeeds extends Item
                         Block.blocksList[this.spawnID].onPostBlockPlaced(world, x, y, z, meta);
                         world.setBlockTileEntity(x, y, z, new TileEntityCrop());
                         TileEntityCrop teCrop = (TileEntityCrop) world.getBlockTileEntity(x, y, z);
-                        teCrop.setCropType(teCrop.getCrop(item.getItemDamage()));
+                        teCrop.setCropType(EnumCrop.getCrop(item.getItemDamage()));
                     }
 
                     world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), newBlock.stepSound.getPlaceSound(), (newBlock.stepSound.getVolume() + 1.0F) / 2.0F, newBlock.stepSound.getPitch() * 0.8F);

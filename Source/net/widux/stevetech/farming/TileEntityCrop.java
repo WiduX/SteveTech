@@ -32,7 +32,7 @@ public class TileEntityCrop extends TileEntity
 	private byte tickDelay = 0; // Used to delay updates from ticks. Improves performance, slows rendering updates.
 	private byte blockHeight = 1; // 
 	
-	private static int amountSeeds = EnumCrop.getNumberCrops();//crops.length; // Amount of different types of seeds
+	private static int amountSeeds = EnumCrop.getNumberCrops(); // Amount of different types of seeds
 	
 	public TileEntityCrop()
 	{
@@ -79,16 +79,6 @@ public class TileEntityCrop extends TileEntity
 	public static int getSeedTypesAmount()
 	{
 		return amountSeeds;
-	}
-	
-	public static EnumCrop getCrop(int ID)
-	{
-		return EnumCrop.values()[ID];
-	}
-	
-	public static int getAmountCrops()
-	{
-		return EnumCrop.getNumberCrops();
 	}
 	
 	public static boolean getSuffix(int ID)
@@ -352,7 +342,7 @@ public class TileEntityCrop extends TileEntity
 
 	public void updateEntity()
 	{
-		if(tickDelay >= 10)
+		if(tickDelay >= 10) // This will only tick the block every 10 ticks, reducing server & client load, and network usage.
 		{
 			tickDelay = 0;
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
@@ -360,6 +350,7 @@ public class TileEntityCrop extends TileEntity
 		tickDelay++;
 	}
 	
+	/** Returns true to remove a single item from the player (e.g. bone meal) */
 	public boolean rightClick(ItemStack itemHeld, EntityPlayer player)
 	{
 		if(itemHeld == null) // No item being held
