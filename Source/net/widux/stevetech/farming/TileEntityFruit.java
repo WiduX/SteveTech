@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -22,9 +21,9 @@ public class TileEntityFruit extends TileEntity
 	private final String NBT_FINISHED = "NoLongerGrows";
 	
 	// Block-specific
-	private EnumFruit fruit;
-	private int growthStage;
-	private boolean stopGrowing;
+	private EnumFruit fruit = EnumFruit.APPLE;
+	private int growthStage = 0;
+	private boolean stopGrowing = false;
 	private byte tickDelay = 0; // Used to delay updates from ticks. Improves performance, slows rendering updates.
 	
 	public TileEntityFruit()
@@ -64,23 +63,91 @@ public class TileEntityFruit extends TileEntity
     	this.readFromNBT(pkt.customParam1);
     }
     
-    public void dropAndInvalidate(World world, int x, int y, int z)
+    public void dropAndInvalidate(World world, int x, int y, int z) // TODO Test drops.
     {
-    	double xItem, yItem, zItem;
-    	int amountDropped = 1;
-    	Random rand = new Random();
-    	xItem = rand.nextDouble() * 0.5D;
-    	yItem = rand.nextDouble() * 0.5D;
-    	zItem = rand.nextDouble() * 0.5D;
-    	if(getMaxDropped(getFruitID()) != 1)
+    	if(!world.isRemote)
     	{
-    		amountDropped = rand.nextInt(getMaxDropped(getFruitID()) + 1);
+    		Random rand = new Random();
+    		double xItem, yItem, zItem;
+    		int amountDropped = 1;
+    		
+    		xItem = (rand.nextDouble() * 0.0015D) + x;
+    		yItem = (rand.nextDouble() * 0.0015D) + y;
+    		zItem = (rand.nextDouble() * 0.0015D) + z;
+    		
+    		if(fruit.getMaxDrop() != 1)
+    		{
+    			amountDropped = rand.nextInt(fruit.getMaxDrop() + 1);
+    		}
+    		
+    		ItemStack itemDropped = fruit.getDrop();
+    		itemDropped.stackSize = amountDropped;
+    		
+    		EntityItem dropped = new EntityItem(world, xItem, yItem, zItem, itemDropped);
+    		dropped.delayBeforeCanPickup = 5;
+    		world.spawnEntityInWorld(dropped);
     	}
-    	EntityItem dropped = new EntityItem(world, x + xItem, y + yItem, z + zItem, new ItemStack(getDrop(getFruitID()).itemID, amountDropped, getDrop(getFruitID()).getItemDamage()));
-    	dropped.delayBeforeCanPickup = 5;
-    	world.spawnEntityInWorld(dropped);
     }
     
+    public void stopGrowing()
+    {
+    	this.stopGrowing = true;
+    }
+    
+    public int getFruitID()
+    {
+    	return fruit.getID();
+    }
+    
+    public int getGrowthStage()
+    {
+    	return this.growthStage;
+    }
+    
+    public int getFruitTexture(int fruitType, int growth)
+	{
+		return (fruitType * 8) + growth;
+	}
+
+	public void setCropType(EnumFruit newFruit)
+	{
+		this.fruit = newFruit;
+	}
+
+	public void setGrowthStage(int newStage)
+	{
+		this.growthStage = newStage;
+	}
+    
+	public void attemptAddGrowthStage() // TODO Implement growing.
+	{
+		
+	}
+	
+	public void tick()
+	{
+		Random rand = new Random();
+		
+		if(!this.stopGrowing && rand.nextInt(fruit.getGrowthSpeed()) < 3) // (3 / Growth Speed) chance of growing
+		{
+			this.attemptAddGrowthStage();
+		}
+		else // Not yet ready to grow.
+		{
+			return;
+		}
+	}
+	
+	public void updateEntity()
+	{
+		if(tickDelay >= 40) // This will only tick the block every 40 ticks, reducing server & client load, and network usage.
+		{
+			tickDelay = 0;
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+		tickDelay++;
+	}
+	
     /** Returns true to remove a single item from the player (e.g. bone meal) */
     public boolean rightClick(ItemStack itemHeld, EntityPlayer player)
 	{
@@ -105,44 +172,16 @@ public class TileEntityFruit extends TileEntity
 			
 	        else if(itemHeld.getItemDamage() == 3) // Plant Informer
 	        {
-				player.sendChatToPlayer("\u00a72----- Plant Status -----");
+				player.sendChatToPlayer("\u00a72----- Fruit Status -----");
 				player.sendChatToPlayer("\u00a76Fruit Type: \u00a7f" + this.fruit + " (" + this.fruit.getName() + ")");
-				player.sendChatToPlayer("\u00a76Growth Speed: \u00a7f" + this.getGrowthSpeed());
+				player.sendChatToPlayer("\u00a76Growth Speed: \u00a7f" + this.fruit.getGrowthSpeed());
 				player.sendChatToPlayer("\u00a76Stage: \u00a7f" + this.growthStage);
 				player.sendChatToPlayer("\u00a76Stopped Growing: \u00a7f" + this.stopGrowing);
 	        }
 			
 			return false;
 		}
+		return false;
 	}
-	
-	public void updateEntity()
-	{
-		if(tickDelay >= 40) // This will only tick the block every 40 ticks, reducing server & client load, and network usage.
-		{
-			tickDelay = 0;
-			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-		}
-		tickDelay++;
-	}
-		
-    public int getFruitID()
-    {
-    	return fruitType;
-    }
     
-    public int getMaxDropped(int fruit)
-    {
-    	return maxDrop[fruit];
-    }
-    
-    public ItemStack getDrop(int fruit)
-    {
-    	return drops[fruit];
-    }
-    
-	public int getFruitTexture()
-	{
-		return (fruitType * 8) + growthStage;
-	}
 }

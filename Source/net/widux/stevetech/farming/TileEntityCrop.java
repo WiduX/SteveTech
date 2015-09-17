@@ -76,16 +76,6 @@ public class TileEntityCrop extends TileEntity
 		this.readFromNBT(pkt.customParam1);
 	}
 	
-	public static int getSeedTypesAmount()
-	{
-		return amountSeeds;
-	}
-	
-	public static boolean getSuffix(int ID)
-	{
-		return EnumCrop.values()[ID].getHasNameSuffix();
-	}
-	
 	public void dropAndInvalidate(World world, int x, int y, int z)
 	{
 		if(!world.isRemote)
@@ -131,18 +121,16 @@ public class TileEntityCrop extends TileEntity
 			items[1] = new ItemStack(SteveTechFarming.seeds, getAmountDropped(false), crop);
 			return items;
 		}*/
+		items[0] = new ItemStack(this.crop.getDropHarvest().itemID, getAmountDropped(true), this.crop.getDropHarvest().getItemDamage());
 		if(!dropsSeed) // Shouldn't drop seeds, just harvest
 		{
-			items[0] = new ItemStack(getDropHarvest(crop).itemID, getAmountDropped(true), getDropHarvest(crop).getItemDamage());
 			items[1] = null;
-			return items;
 		}
 		else // Drops both seeds and harvest
 		{
-			items[0] = new ItemStack(getDropHarvest(crop).itemID, getAmountDropped(true), getDropHarvest(crop).getItemDamage());
-			items[1] = new ItemStack(getDropSeed(crop).itemID, getAmountDropped(false), getDropSeed(crop).getItemDamage());
-			return items;
+			items[1] = new ItemStack(this.crop.getDropSeed().itemID, getAmountDropped(false), this.crop.getDropSeed().getItemDamage());
 		}
+		return items;
 	}
 	
 	private int getAmountDropped(boolean harvest)
@@ -189,26 +177,6 @@ public class TileEntityCrop extends TileEntity
 	public int getCropID()
 	{
 		return crop.getID();
-	}
-
-	public int getMaxDroppedHarvest(int ID)
-	{
-		return EnumCrop.values()[ID].getMaxDropHarvest();
-	}
-
-	public int getMaxDroppedSeed(int ID)
-	{
-		return EnumCrop.values()[ID].getMaxDropSeed();
-	}
-
-	public ItemStack getDropHarvest(int ID)
-	{
-		return EnumCrop.values()[ID].getDropHarvest();
-	}
-
-	public ItemStack getDropSeed(int ID)
-	{
-		return EnumCrop.values()[ID].getDropSeed();
 	}
 
 	public int getGrowthStage()
@@ -268,7 +236,7 @@ public class TileEntityCrop extends TileEntity
 
 		else
 		{
-			addGrowthStage();
+			growthStage++;
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 	}
@@ -330,14 +298,6 @@ public class TileEntityCrop extends TileEntity
 		{
 			return;
 		}
-	}
-	
-	/**
-	 * DO NOT USE DIRECTLY.
-	 */
-	private void addGrowthStage()
-	{
-		this.growthStage++;
 	}
 
 	public void updateEntity()

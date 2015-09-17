@@ -39,7 +39,7 @@ public class RenderFruit implements ISimpleBlockRenderingHandler
 		
 		Tessellator tessellator = Tessellator.instance;
 		TileEntityFruit teFruit = (TileEntityFruit) world.getBlockTileEntity((int)x, (int)y, (int)z);
-        int texture = teFruit.getFruitTexture();
+        int texture = teFruit.getFruitTexture(teFruit.getFruitID(), teFruit.getGrowthStage());
 
         if (renderer.overrideBlockTexture >= 0)
         {

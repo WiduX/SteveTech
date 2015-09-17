@@ -31,9 +31,9 @@ public class ClientProxy extends CommonProxy
 		
 		LanguageRegistry.addName(new ItemStack(SteveTechFarming.crops, 1), "Crop Block");
 		
-		for(int meta = 0; meta < TileEntityCrop.getSeedTypesAmount(); meta++)
+		for(int meta = 0; meta < EnumCrop.getNumberCrops(); meta++)
 		{
-			if(TileEntityCrop.getSuffix(meta))
+			if(EnumCrop.getCrop(meta).getHasNameSuffix())
 			{
 				LanguageRegistry.addName(new ItemStack(SteveTechFarming.seeds, 1, meta), EnumCrop.getCrop(meta).getName() + " Seeds");
 			}

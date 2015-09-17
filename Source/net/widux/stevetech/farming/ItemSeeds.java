@@ -93,7 +93,7 @@ public class ItemSeeds extends Item
     @SuppressWarnings({ "rawtypes", "unchecked" })
 	public void getSubItems(int i, CreativeTabs tab, List items)
 	{
-		for(int meta = 0; meta < TileEntityCrop.getSeedTypesAmount(); meta++)
+		for(int meta = 0; meta < EnumCrop.getNumberCrops(); meta++)
 		{
 			items.add(new ItemStack(this, 1, meta));
 		}
