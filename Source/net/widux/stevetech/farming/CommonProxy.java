@@ -12,9 +12,11 @@ public class CommonProxy
 		//SteveTechFarming.corral = new BlockCorral(SteveTechFarming.config.getBlockID(1201, "Corral", null)).setBlockName("WiduX-SteveTech-Farm-Corral");
 		SteveTechFarming.fruit = new BlockFruit(SteveTechFarming.config.getBlockID(1202, "Fruit", null)).setBlockName("WiduX-SteveTech-Farm-Fruit");
 		SteveTechFarming.crops = new BlockCrops(SteveTechFarming.config.getBlockID(1203, "Crops", null)).setBlockName("WiduX-SteveTech-Farm-Crops");
+		
 		SteveTechFarming.seeds = new ItemSeeds(SteveTechFarming.config.getItemID(11000, "Seeds", null)).setItemName("WiduX-SteveTech-Farm-Seeds");
 		SteveTechFarming.harvestedItems = new ItemHarvest(SteveTechFarming.config.getItemID(11002, "Harvest", null)).setItemName("WiduX-SteveTech-Farm-Harvest");
 		SteveTechFarming.creativeTools = new ItemCreativeTools(SteveTechFarming.config.getItemID(11001, "Creative Tools", null)).setItemName("WiduX-SteveTech-Farm-CTools");
+		SteveTechFarming.foods = new ItemSTFood(SteveTechFarming.config.getItemID(11003, "Foods", null)).setItemName("WiduX-SteveTech-Farm-Foods");
 	}
 	
 	public void registerRenderers()
@@ -29,7 +31,8 @@ public class CommonProxy
 	
 	public void registerCrafting()
 	{
-		GameRegistry.addRecipe(new ItemStack(Block.dirt, 3), new Object[]{"ddd", 'd', Block.dirt});
+		GameRegistry.addRecipe(new ItemStack(Block.dirt, 3), new Object[]{"ddd", 'd', Block.dirt}); // TODO Remove this.
+		Recipes.addRecipes();
 	}
 	
 	public void registerBlocks()
