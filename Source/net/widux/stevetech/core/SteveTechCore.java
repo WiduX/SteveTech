@@ -20,7 +20,7 @@ public class SteveTechCore
 
 	public static final String MOD_INTERNAL_NAME = "WiduX-SteveTechCore";
 	public static final String MOD_EXTERNAL_NAME = "SteveTech Core";
-	public static final String MOD_VERSION = "r0";
+	public static final String MOD_VERSION = "0.1.0";
 	
 	@Instance(MOD_INTERNAL_NAME)
 	public static SteveTechCore instance;

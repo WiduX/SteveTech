@@ -49,25 +49,25 @@ public class GenerateOre
 			int i2 = MathHelper.floor_double(d7 + d11 / 2.0D);
 			int j2 = MathHelper.floor_double(d8 + d10 / 2.0D);
 
-			for (int k2 = i1; k2 <= l1; ++k2)
+			for (int oreX = i1; oreX <= l1; ++oreX)
 			{
-				double d12 = ((double)k2 + 0.5D - d6) / (d10 / 2.0D);
+				double d12 = ((double)oreX + 0.5D - d6) / (d10 / 2.0D);
 
 				if (d12 * d12 < 1.0D)
 				{
-					for (int l2 = j1; l2 <= i2; ++l2)
+					for (int oreY = j1; oreY <= i2; ++oreY)
 					{
-						double d13 = ((double)l2 + 0.5D - d7) / (d11 / 2.0D);
+						double d13 = ((double)oreY + 0.5D - d7) / (d11 / 2.0D);
 
 						if (d12 * d12 + d13 * d13 < 1.0D)
 						{
-							for (int i3 = k1; i3 <= j2; ++i3)
+							for (int oreZ = k1; oreZ <= j2; ++oreZ)
 							{
-								double d14 = ((double)i3 + 0.5D - d8) / (d10 / 2.0D);
-								Block block = Block.blocksList[world.getBlockId(k2, l2, i3)];
-								if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && (block != null && block.isGenMineableReplaceable(world, k2, l2, i3)))
+								double d14 = ((double)oreZ + 0.5D - d8) / (d10 / 2.0D);
+								Block block = Block.blocksList[world.getBlockId(oreX, oreY, oreZ)];
+								if (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && (block != null && block.isGenMineableReplaceable(world, oreX, oreY, oreZ)))
 								{
-									world.setBlockAndMetadata(k2, l2, i3, this.blockID, this.meta);
+									world.setBlockAndMetadata(oreX, oreY, oreZ, this.blockID, this.meta);
 								}
 							}
 						}
