@@ -7,7 +7,7 @@ public enum EnumFruit
 {
 	
 	APPLE("Apple", 4, 1, 30, new ItemStack(Item.appleRed)),
-	ORANGE("Orange", 4, 1, 30, new ItemStack(Item.arrow)), // TODO Implement fruit items, change these 4.
+	ORANGE("Orange", 4, 1, 30, new ItemStack(Item.arrow)), // TODO Implement fruit items, change these 4 drops.
 	PEAR("Pear", 4, 1, 30, new ItemStack(Item.arrow)),
 	LEMON("Lemon", 4, 1, 30, new ItemStack(Item.arrow)),
 	GRAPEFRUIT("Grapefruit", 4, 1, 30, new ItemStack(Item.arrow));

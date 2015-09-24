@@ -2,7 +2,9 @@ package net.widux.stevetech.farming;
 
 public enum EnumFood
 {
-	
+	//TODO Adjust restoration values
+	//TODO Add saturation values where needed
+	//TODO Add wolf eating info where needed
 	BURGER("Hamburger", 6),
 	BURGER_CHEESE("Cheeseburger", 7),
 	BURGER_BACON("Baconburger", 8),
