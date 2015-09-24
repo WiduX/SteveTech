@@ -13,6 +13,7 @@ public class ClientProxy extends CommonProxy
 	{
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Block.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Crops.png");
+		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Fruits.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Item.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Seed.png");
 		MinecraftForgeClient.preloadTexture("/net/widux/stevetech/farming/Food.png");
@@ -50,9 +51,9 @@ public class ClientProxy extends CommonProxy
 			LanguageRegistry.addName(new ItemStack(SteveTechFarming.harvestedItems, 1, meta), ItemHarvest.names[meta]);
 		}
 		
-		for(int meta = 0; meta < ItemHarvest.names.length; meta++)
+		for(int idOffset = 0; idOffset < EnumFood.getNumberFoods(); idOffset++)
 		{
-			LanguageRegistry.addName(new ItemStack(SteveTechFarming.foods, 1, meta), EnumFood.getFood(meta).getName());
+			LanguageRegistry.addName(new ItemStack(SteveTechFarming.foods[idOffset], 1), EnumFood.getFood(idOffset).getName());
 		}
 		
 		LanguageRegistry.addName(new ItemStack(SteveTechFarming.creativeTools, 1, 0), "Growth Progressor");

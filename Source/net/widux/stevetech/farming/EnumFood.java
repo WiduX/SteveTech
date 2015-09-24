@@ -67,6 +67,7 @@ public enum EnumFood
 	private String name;
 	private int halfHealingUnits;
 	private float saturation;
+	private boolean willWolfEat;
 	
 	private EnumFood(String name, int halfHealingUnits)
 	{
@@ -82,9 +83,19 @@ public enum EnumFood
 		this.saturation = saturation;
 	}
 	
+	private EnumFood(String name, int halfHealingUnits, float saturation, boolean willWolfEat)
+	{
+		this.name = name;
+		this.halfHealingUnits = halfHealingUnits;
+		this.saturation = saturation;
+		this.willWolfEat = willWolfEat;
+	}
+	
 	public String getName() {return this.name;}
 	public int getHealAmount() {return this.halfHealingUnits;}
 	public float getSaturation() {return this.saturation;}
+	public boolean willWolfEat() {return this.willWolfEat;}
+	
 	public int getID() {return this.ordinal();}
 	
 	public static int getNumberFoods() {return values().length;}

@@ -2,7 +2,6 @@ package net.widux.stevetech.farming;
 
 import java.util.List;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -10,12 +9,13 @@ import net.minecraft.item.ItemStack;
 public class ItemSTFood extends ItemFood
 {
 	
-	public ItemSTFood(int itemID)
+	private EnumFood food;
+	
+	public ItemSTFood(int itemID, EnumFood foodType)
 	{
-		super(itemID, healAmount, saturation, willWolfEat);
-		this.setMaxDamage(0);
-		this.setHasSubtypes(true);
+		super(itemID, foodType.getHealAmount(), foodType.getSaturation(), foodType.willWolfEat());
 		this.setCreativeTab(SteveTechFarming.stFarmingTab);
+		this.food = foodType;
 	}
 	
 	public String getTextureFile()
@@ -25,28 +25,22 @@ public class ItemSTFood extends ItemFood
 	
 	public int getIconFromDamage(int meta)
 	{
-		return 0 + meta;
+		return 0 + food.getID();
 	}
 	
 	public String getItemNameIS(ItemStack item)
 	{
-		return "WiduX-BF-Item-Foods." + EnumFood.getFood(item.getItemDamage()).getName();
+		return "WiduX-BF-Item-Foods." + food.getName();
 	}
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void getSubItems(int i, CreativeTabs tab, List items)
-	{
-		for(int meta = 0; meta < EnumFood.getNumberFoods(); meta++)
-		{
-			items.add(new ItemStack(this, 1, meta));
-		}
-	}
+	public EnumFood getFood() {return food;}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void addInformation(ItemStack item, EntityPlayer player, List list, boolean flag)
 	{
-		list.add("Restores: " + EnumFood.getFood(item.getItemDamage()).getHealAmount() / 2.0F);
+		ItemSTFood foodItem = (ItemSTFood) item.getItem();
+		list.add("Restores: " + (foodItem.getFood().getHealAmount() / 2.0F));
 	}
 	
 }

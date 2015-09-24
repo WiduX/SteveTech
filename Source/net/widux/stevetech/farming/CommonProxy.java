@@ -1,6 +1,7 @@
 package net.widux.stevetech.farming;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -16,7 +17,13 @@ public class CommonProxy
 		SteveTechFarming.seeds = new ItemSeeds(SteveTechFarming.config.getItemID(11000, "Seeds", null)).setItemName("WiduX-SteveTech-Farm-Seeds");
 		SteveTechFarming.harvestedItems = new ItemHarvest(SteveTechFarming.config.getItemID(11002, "Harvest", null)).setItemName("WiduX-SteveTech-Farm-Harvest");
 		SteveTechFarming.creativeTools = new ItemCreativeTools(SteveTechFarming.config.getItemID(11001, "Creative Tools", null)).setItemName("WiduX-SteveTech-Farm-CTools");
-		SteveTechFarming.foods = new ItemSTFood(SteveTechFarming.config.getItemID(11003, "Foods", null)).setItemName("WiduX-SteveTech-Farm-Foods");
+		SteveTechFarming.foods = new Item[EnumFood.getNumberFoods()];
+		int firstFoodItemID = SteveTechFarming.config.getItemID(11003, "Foods Array", "This is the first item ID in the list of foods. Item IDs used will start here, and use the next " + EnumFood.getNumberFoods() + " IDs. Make sure they are all available.");
+		for(int idOffset = 0; idOffset < SteveTechFarming.foods.length; idOffset++)
+		{
+			EnumFood food = EnumFood.getFood(idOffset);
+			SteveTechFarming.foods[idOffset] = new ItemSTFood(firstFoodItemID + idOffset, food).setItemName("WiduX-SteveTech-Farm-Foods-Food" + idOffset);
+		}
 	}
 	
 	public void registerRenderers()
@@ -32,7 +39,6 @@ public class CommonProxy
 	public void registerCrafting()
 	{
 		GameRegistry.addRecipe(new ItemStack(Block.dirt, 3), new Object[]{"ddd", 'd', Block.dirt}); // TODO Remove this.
-		Recipes.addRecipes();
 	}
 	
 	public void registerBlocks()

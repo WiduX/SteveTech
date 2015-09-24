@@ -40,7 +40,7 @@ public class SteveTechFarming
 	public static Item seeds;
 	public static Item harvestedItems;
 	public static Item creativeTools;
-	public static Item foods;
+	public static Item[] foods;
 	
 	public static CreativeTabs stFarmingTab = new CreativeTabFarming("SteveTechFarming");
 	
