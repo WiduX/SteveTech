@@ -21,14 +21,12 @@ public class TileEntityCrop extends TileEntity
 	private final String NBT_STAGE = "GrowthStage";
 	private final String NBT_FINISHED = "NoLongerGrows";
 	private final String NBT_FERTILIZER = "FertilizerAmount";
-	private final String NBT_GROWTH_RATE = "CurrentGrowthRate";
 
 	// Block-specific
-	private EnumCrop crop; // The ID of the crop in this block
-	private int growthStage; // The stage of the crop in this block
-	private boolean stopGrowing; // Is this plant finished growing?
-	private byte fertilizer; // The amount of fertilizer the plant has (Up to 100)
-	private int growthRate; // The current speed of growth. --- Speed of growth / (Fertilizer / 50) ---
+	private EnumCrop crop = EnumCrop.TOMATO; // The ID of the crop in this block
+	private int growthStage = 0; // The stage of the crop in this block
+	private boolean stopGrowing = false; // Is this plant finished growing?
+	private byte fertilizer = 0; // The amount of fertilizer the plant has (Up to 100)
 	private byte tickDelay = 0; // Used to delay updates from ticks. Improves performance, slows rendering updates.
 	private byte blockHeight = 1; // 
 	
@@ -45,7 +43,6 @@ public class TileEntityCrop extends TileEntity
 		growthStage = nbt.getInteger(NBT_STAGE);
 		stopGrowing = nbt.getBoolean(NBT_FINISHED);
 		fertilizer = nbt.getByte(NBT_FERTILIZER);
-		growthRate = nbt.getInteger(NBT_GROWTH_RATE);
 
 	}
 
@@ -57,7 +54,6 @@ public class TileEntityCrop extends TileEntity
 		nbt.setInteger(NBT_STAGE, growthStage);
 		nbt.setBoolean(NBT_FINISHED, stopGrowing);
 		nbt.setByte(NBT_FERTILIZER, fertilizer);
-		nbt.setInteger(NBT_GROWTH_RATE, growthRate);
 	}
 
 	@Override
@@ -174,6 +170,7 @@ public class TileEntityCrop extends TileEntity
 	
 	public int getCropID()
 	{
+		System.out.println(this.xCoord + "," + this.yCoord + "," + this.zCoord + "," + this.crop); // TODO Remove this.
 		return crop.getID();
 	}
 
@@ -225,6 +222,7 @@ public class TileEntityCrop extends TileEntity
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 				return;
 			}
+			return;
 		}
 
 		if(getGrowthStage() >= this.crop.getGrowthStages() - 1)
@@ -256,10 +254,7 @@ public class TileEntityCrop extends TileEntity
 				// Set-up top plant block
 				up.setCropType(this.crop);
 				up.stopGrowing = true;
-				if(3 == 2+1) //TODO WTF is this?
-				{
-					up.setGrowthStage(this.crop.getGrowthStages() - 1); // The maximum
-				}
+				up.setGrowthStage(this.crop.getGrowthStages() - 1); // The maximum
 				this.stopGrowing = true;
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 			}
