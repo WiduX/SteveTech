@@ -5,14 +5,14 @@ import net.minecraft.item.ItemStack;
 public enum EnumCrop
 {
 	
-	TOMATO		("Tomato",		8, 2, 5, 3, 80, new ItemStack(SteveTechFarming.harvestedItems, 1, 0),	new ItemStack(SteveTechFarming.seeds, 1, 0),	true, true),
+	TOMATO		("Tomato",		8, 2, 5, 3, 80,  new ItemStack(SteveTechFarming.harvestedItems, 1, 0),	new ItemStack(SteveTechFarming.seeds, 1, 0),	true, true),
 	ONION		("Onion",		4, 1, 4, 1, 110, new ItemStack(SteveTechFarming.seeds, 1, 1),			null,											false, false),
-	CUCUMBER	("Cucumber",	6, 1, 4, 4, 60, new ItemStack(SteveTechFarming.harvestedItems, 1, 1),	new ItemStack(SteveTechFarming.seeds, 1, 2),	true, true),
+	CUCUMBER	("Cucumber",	6, 1, 4, 4, 60,  new ItemStack(SteveTechFarming.harvestedItems, 1, 1),	new ItemStack(SteveTechFarming.seeds, 1, 2),	true, true),
 	EGGPLANT	("Eggplant",	7, 1, 5, 3, 140, new ItemStack(SteveTechFarming.harvestedItems, 1, 2),	new ItemStack(SteveTechFarming.seeds, 1, 3),	true, true),
 	TEA			("Tea",			4, 1, 5, 3, 100, new ItemStack(SteveTechFarming.harvestedItems, 1, 3),	new ItemStack(SteveTechFarming.seeds, 1, 4),	true, true),
 	COFFEE		("Coffee",		6, 1, 6, 1, 100, new ItemStack(SteveTechFarming.seeds, 1, 5),			null,											false, false),
-	LETTUCE		("Lettuce",		6, 1, 5, 3, 55, new ItemStack(SteveTechFarming.harvestedItems, 1, 4),	new ItemStack(SteveTechFarming.seeds, 1, 6),	true, true);
-	//RADISHES
+	LETTUCE		("Lettuce",		5, 1, 5, 3, 55,  new ItemStack(SteveTechFarming.harvestedItems, 1, 4),	new ItemStack(SteveTechFarming.seeds, 1, 6),	true, true),
+	RADISHES    ("Radishes",	5, 1, 3, 2, 40,  new ItemStack(SteveTechFarming.harvestedItems, 1, 5),	new ItemStack(SteveTechFarming.seeds, 1, 7),	true, true);
 	//CABBAGE
 	//BELLPEPPER
 	//PEAS

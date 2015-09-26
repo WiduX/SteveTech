@@ -79,10 +79,10 @@ public class ItemCreativeTools extends Item
 		}
 		else if(metaTool == 0 && blockID == Block.cactus.blockID || blockID == Block.reed.blockID) // Progressor, Cactus or Sugar Cane
 		{
-			byte topBlock = (byte)y;
+			short topBlock = (short)y;
 			for(byte up = 1; up < 32; up++)
 			{
-				if(world.getBlockId(x, y + up, z) == blockID) {topBlock = (byte)(y + up);}
+				if(world.getBlockId(x, y + up, z) == blockID) {topBlock = (short)(y + up);}
 				else {break;}
 			}
 			if(world.getBlockId(x, topBlock + 1, z) == 0)

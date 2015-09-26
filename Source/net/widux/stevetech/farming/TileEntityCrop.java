@@ -32,8 +32,6 @@ public class TileEntityCrop extends TileEntity
 	private byte tickDelay = 0; // Used to delay updates from ticks. Improves performance, slows rendering updates.
 	private byte blockHeight = 1; // 
 	
-	private static int amountSeeds = EnumCrop.getNumberCrops(); // Amount of different types of seeds
-	
 	public TileEntityCrop()
 	{
 
@@ -258,7 +256,7 @@ public class TileEntityCrop extends TileEntity
 				// Set-up top plant block
 				up.setCropType(this.crop);
 				up.stopGrowing = true;
-				if(3 == 2+1)
+				if(3 == 2+1) //TODO WTF is this?
 				{
 					up.setGrowthStage(this.crop.getGrowthStages() - 1); // The maximum
 				}
@@ -270,7 +268,7 @@ public class TileEntityCrop extends TileEntity
 	
 	/**
 	 * The lower the result is, the higher the chance of growing will be.
-	 * This is a formula to get the range of half the growth time to 5, depending on fertilizer.
+	 * This is a formula to get a number in the range 1/4 -> full, depending on percentage.
 	 * @return The modified growth probability.
 	 */
 	private int getGrowthSpeed()
@@ -281,8 +279,9 @@ public class TileEntityCrop extends TileEntity
 		}
 		else
 		{
-			int half = this.crop.getGrowthSpeed() / 2;
-			return (int) (half - (half * (this.fertilizer / 200.000F)));
+			int full = this.crop.getGrowthSpeed();
+			int quarter = this.crop.getGrowthSpeed() / 4;
+			return (int) (quarter + ((full - quarter) * (1 - (this.fertilizer / 100.000F))));
 		}
 	}
 	
@@ -374,7 +373,7 @@ public class TileEntityCrop extends TileEntity
 	{
 		if(item.itemID == Item.dyePowder.itemID && item.getItemDamage() == 15) // Bonemeal
 		{
-			return 15;
+			return 34;
 		}
 		
 		else if(item.getItem() instanceof IFertilizer) // Other fertilizers added via the API

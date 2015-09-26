@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 public class ItemHarvest extends Item
 {
 	
-	public static final String[] names = {"Tomato", "Cucumber", "Eggplant", "Tea Leaves", "Raw Coffee Beans", "Roasted Coffee Beans", "Lettuce", "Radishes", "Green Bell Pepper", "Yellow Bell Pepper", "Orange Bell Pepper", "Red Bell Pepper"};
-	public static final String[] info =  {"",       "",         "",         "",     "Should be roasted before use", "",               "",        "",         "",                  "",                   "",                   ""};
+	public static final String[] names = {"Tomato", "Cucumber", "Eggplant", "Tea Leaves", "Raw Coffee Beans", "Roasted Coffee Beans", "Lettuce", "Radishes", "Green Bell Pepper", "Yellow Bell Pepper", "Orange Bell Pepper", "Red Bell Pepper", "Cabbage", "Peas", "Beans", "Strawberries", "Raspberries", "Blueberries", "Blackberries", "Bananas"};
+	public static final String[] info =  {"",       "",         "",         "",     "Should be roasted before use", "",               "",        "",         "",                  "",                   "",                   "",                "",        "",     "",      "",             "",            "",            "",             ""};
 	
 	public ItemHarvest(int ID)
 	{
