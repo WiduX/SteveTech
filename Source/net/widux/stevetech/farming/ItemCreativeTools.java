@@ -79,19 +79,13 @@ public class ItemCreativeTools extends Item
 		}
 		else if(metaTool == 0 && blockID == Block.cactus.blockID || blockID == Block.reed.blockID) // Progressor, Cactus or Sugar Cane
 		{
-			int cactusBlocks = 1;
 			byte topBlock = (byte)y;
-			for(byte down = 1; down < 4; down++)
+			for(byte up = 1; up < 32; up++)
 			{
-				if(world.getBlockId(x, y - down, z) == blockID) {cactusBlocks++;}
+				if(world.getBlockId(x, y + up, z) == blockID) {topBlock = (byte)(y + up);}
 				else {break;}
 			}
-			for(byte up = 1; up < 4; up++)
-			{
-				if(world.getBlockId(x, y + up, z) == blockID) {cactusBlocks++; topBlock = (byte)(y + up);}
-				else {break;}
-			}
-			if(cactusBlocks < 3 && world.getBlockId(x, topBlock + 1, z) == 0)
+			if(world.getBlockId(x, topBlock + 1, z) == 0)
 			{
 				world.setBlock(x, topBlock + 1, z, blockID);
 			}
