@@ -37,16 +37,18 @@ public class ItemCreativeTools extends Item
 	
 	public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float xOffset, float yOffset, float zOffset)
     {
-		int meta = item.getItemDamage();
+		if(!world.isRemote)
+		{
+		int metaTool = item.getItemDamage();
 		int metaBlock = world.getBlockMetadata(x, y, z);
 		int blockID = world.getBlockId(x, y, z);
 		
-		if(meta == 2 && blockID == Block.tilledField.blockID) // Fertilizer on farmland
+		if(metaTool == 2 && blockID == Block.tilledField.blockID) // Fertilizer on farmland
 		{
 			world.setBlockMetadataWithNotify(x, y, z, 7);
 			return true;
 		}
-		else if(meta == 0 && blockID == Block.crops.blockID) // Progressor, Wheat
+		else if(metaTool == 0 && blockID == Block.crops.blockID) // Progressor, Wheat
 		{
 			if(metaBlock < 7)
 			{
@@ -55,23 +57,54 @@ public class ItemCreativeTools extends Item
 				return true;
 			}
 		}
-		else if(meta == 0 && blockID == Block.carrot.blockID) // Progressor, Carrot
+		else if(metaTool == 0 && blockID == Block.carrot.blockID) // Progressor, Carrot
 		{
-			if(metaBlock < 5)
+			if(metaBlock < 7)
 			{
 				metaBlock += 2;
+				if(metaBlock > 7) {metaBlock = 7;}
 				world.setBlockMetadataWithNotify(x, y, z, metaBlock);
 				return true;
 			}
 		}
-		else if(meta == 0 && blockID == Block.potato.blockID) // Progressor, Potato
+		else if(metaTool == 0 && blockID == Block.potato.blockID) // Progressor, Potato
 		{
-			if(metaBlock < 5)
+			if(metaBlock < 7)
 			{
 				metaBlock += 2;
+				if(metaBlock > 7) {metaBlock = 7;}
 				world.setBlockMetadataWithNotify(x, y, z, metaBlock);
 				return true;
 			}
+		}
+		else if(metaTool == 0 && blockID == Block.cactus.blockID || blockID == Block.reed.blockID) // Progressor, Cactus or Sugar Cane
+		{
+			int cactusBlocks = 1;
+			byte topBlock = (byte)y;
+			for(byte down = 1; down < 4; down++)
+			{
+				if(world.getBlockId(x, y - down, z) == blockID) {cactusBlocks++;}
+				else {break;}
+			}
+			for(byte up = 1; up < 4; up++)
+			{
+				if(world.getBlockId(x, y + up, z) == blockID) {cactusBlocks++; topBlock = (byte)(y + up);}
+				else {break;}
+			}
+			if(cactusBlocks < 3 && world.getBlockId(x, topBlock + 1, z) == 0)
+			{
+				world.setBlock(x, topBlock + 1, z, blockID);
+			}
+		}
+		else if(metaTool == 3 && blockID == Block.crops.blockID || blockID == Block.carrot.blockID || blockID == Block.potato.blockID ) // Plant Info, Wheat/Carrot/Potato
+		{
+			String cropType = "Wheat";
+			if(blockID == Block.carrot.blockID) {cropType = "Carrot";}
+			if(blockID == Block.potato.blockID) {cropType = "Potato";}
+			player.sendChatToPlayer("\u00a72----- Plant Status -----");
+			player.sendChatToPlayer("\u00a76Crop: \u00a7f" + cropType);
+			player.sendChatToPlayer("\u00a76Stage: \u00a7f" + metaBlock + " / 7");
+		}
 		}
 		return false;
     }
