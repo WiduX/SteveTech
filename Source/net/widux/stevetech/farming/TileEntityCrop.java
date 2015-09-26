@@ -170,7 +170,6 @@ public class TileEntityCrop extends TileEntity
 	
 	public int getCropID()
 	{
-		System.out.println(this.xCoord + "," + this.yCoord + "," + this.zCoord + "," + this.crop); // TODO Remove this.
 		return crop.getID();
 	}
 
